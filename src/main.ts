@@ -9,7 +9,11 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import '@mdi/font/css/materialdesignicons.css'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faXingSquare, faLinkedin, faGithubSquare } from '@fortawesome/free-brands-svg-icons'
 
+library.add(faXingSquare, faLinkedin, faGithubSquare)
 
 const vuetify = createVuetify({
   components,
@@ -17,4 +21,5 @@ const vuetify = createVuetify({
 })
 
 const app = createApp(App)
+app.component('font-awesome-icon', FontAwesomeIcon)
 app.use(vuetify).mount('#app')
