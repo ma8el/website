@@ -12,6 +12,7 @@ import '@mdi/font/css/materialdesignicons.css'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faXingSquare, faLinkedin, faGithubSquare, faBlogger } from '@fortawesome/free-brands-svg-icons'
+import { createPinia } from 'pinia'
 
 library.add(faXingSquare, faLinkedin, faGithubSquare, faBlogger)
 
@@ -20,6 +21,8 @@ const vuetify = createVuetify({
   directives,
 })
 
+const pinia = createPinia()
+
 const app = createApp(App)
 app.component('font-awesome-icon', FontAwesomeIcon)
-app.use(vuetify).mount('#app')
+app.use(vuetify).use(pinia).mount('#app')
