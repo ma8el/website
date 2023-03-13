@@ -11,7 +11,7 @@ export default {
         <h1 class="green">{{ header }}</h1>
     </div>
     <div class="wrapper-name">
-        <h2>{{ caption }}</h2>
+        <h3>{{ caption }}</h3>
     </div>
   </div>
   </div>
@@ -41,7 +41,7 @@ export default {
   border-bottom: 1px solid map-get($colors, primary);
 }
   .wrapper-name {
-    width: 250px;
+    width: 400px;
     color: map-get($colors, primary);
 }
 
