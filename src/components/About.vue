@@ -3,6 +3,7 @@ import Title from '@/components/Title.vue'
 import SocialBar from '@/components/SocialBar.vue'
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
+import { useAuthStore } from '../stores/store';
 
 export default {
 components: {
@@ -24,8 +25,9 @@ data () {
     }
 },
 mounted() {
+    const authStore = useAuthStore();
     const apiUrl = import.meta.env.VITE_API_URL;
-    const jwtToken = import.meta.env.VITE_JWT_TOKEN;
+    const jwtToken = authStore.$state.token;
     const axiosInstance: AxiosInstance = axios.create({
       baseURL: apiUrl,
       headers: {

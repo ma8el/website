@@ -1,6 +1,7 @@
 <script lang="ts">
 import axios from 'axios';
 import Title from '@/components/Title.vue';
+import { useAuthStore } from '../stores/store';
 
 interface Skill {
     name: string;
@@ -26,8 +27,9 @@ export default {
         }
     },
     mounted() {
+    const authStore = useAuthStore();
     const apiUrl = import.meta.env.VITE_API_URL;
-    const jwtToken = import.meta.env.VITE_JWT_TOKEN;
+    const jwtToken = authStore.$state.token;
     axios.get<Skill[]>(`${apiUrl}/skills`, {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
