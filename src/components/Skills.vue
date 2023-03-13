@@ -1,6 +1,11 @@
 <script lang="ts">
-import axios, {isCancel, AxiosError} from 'axios';
+import axios from 'axios';
 import Title from '@/components/Title.vue';
+
+interface Skill {
+    name: string;
+    logo_url: string;
+}
 
 export default {
     components: {
@@ -8,19 +13,26 @@ export default {
     },
     data() {
         return {
-            skills: [
-                {
-                    name: "SQL",
-                    rating: 8
-                },
-            ],
+            skills: [{'name': '', 'logo_url': ''}],
             title: "Skills",
-            description: "My Skills"
+            description: "Tech I work with",
+            image: ""
+        }
+    },
+    methods: {
+        getImageUrl(imageName: string) {
+            console.log(import.meta.url)
+            return new URL(`/src/assets/image/logo/${imageName}`, import.meta.url).href;
         }
     },
     mounted() {
-    axios
-      .get('http://localhost:3000/skills')
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const jwtToken = import.meta.env.VITE_JWT_TOKEN;
+    axios.get<Skill[]>(`${apiUrl}/skills`, {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    })
       .then(response => (this.skills = response.data))
       .catch(error => console.log(error))
   }
@@ -35,22 +47,13 @@ export default {
           :title="title"
           :description="description"
       />
-      <div 
-        class="skill"
-        v-for="skill in skills"
-      >
-        <h2>
-            {{ skill.name }}
-        </h2>
-        <v-rating 
-        :model-value="skill.rating"
-        color="black"
-        readonly
-        length=10
-        ></v-rating>
-
+      <v-row class="mb-8" no-gutters>
+      <v-col cols="2" class="pa-8 ma-5 black" v-for="(skill, index) in skills" :key="index">
+        <img id="imgLogo" class="img-responsive mx-auto d-block" :src="getImageUrl(skill.logo_url)" :alt="skill.name" width="96" height="96"/>
+        <div id="divAlt" class="altCaption text-center">{{skill.name}}</div>
+      </v-col>
+      </v-row>
       </div>
-    </div>
 
 </template>
 
@@ -66,5 +69,8 @@ export default {
     font-weight: 500;
     font-size: 2rem;
     top: -10px;
+}
+.black {
+    color: black;
 }
 </style>
