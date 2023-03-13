@@ -1,5 +1,4 @@
 <script lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
 import Greeting from './components/Greeting.vue'
 import Skills from './components/Skills.vue'
 import Experience from './components/Experience.vue'
@@ -15,8 +14,8 @@ export default {
     data() {
         return {
             msg: {
-                header: "Hey, I'm John",
-                caption: 'I am a foo bar'
+                header: "Hey, I'm Markus",
+                caption: 'Software Engineer | Physicist | Sports Enthusiast'
                  }
         }
     }
