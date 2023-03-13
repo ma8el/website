@@ -11,9 +11,9 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import '@mdi/font/css/materialdesignicons.css'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faXingSquare, faLinkedin, faGithubSquare } from '@fortawesome/free-brands-svg-icons'
+import { faXingSquare, faLinkedin, faGithubSquare, faBlogger } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faXingSquare, faLinkedin, faGithubSquare)
+library.add(faXingSquare, faLinkedin, faGithubSquare, faBlogger)
 
 const vuetify = createVuetify({
   components,
